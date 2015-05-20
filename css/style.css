@@ -1,0 +1,50 @@
+.game {
+  padding: 40px 15px;
+  text-align: center;
+  max-width: 730px;
+
+}
+
+.game .table {
+    width: auto;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.negative {
+    color: red;
+}
+
+/* When hiding an element */
+.grid.ng-hide-add {
+  -webkit-transition:0.5s linear all;
+  -moz-transition:0.5s linear all;
+  -o-transition:0.5s linear all;
+  transition:0.5s linear all;
+  -webkit-transition-delay: 3.5s;
+  transition-delay: 3.5s;
+
+  opacity:1;
+}
+.grid.ng-hide-add.ng-hide-add-active {
+  opacity:0;
+}
+
+/* When showing an element */
+.grid.ng-hide-remove {
+  -webkit-transition:0.5s linear all;
+  -moz-transition:0.5s linear all;
+  -o-transition:0.5s linear all;
+  transition:0.5s linear all;
+
+  /* this needs to be here to make it visible during the animation
+     since the .ng-hide class is already on the element rendering
+     it as hidden. */
+  display:table!important;
+  opacity:0;
+}
+.grid,
+.grid.ng-hide-remove.ng-hide-remove-active {
+
+  opacity:1;
+}

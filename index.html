@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="MyMem">
+  <head>
+    <title>MyMem Game</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="./js/angular.min.js" ></script>
+    <script type="text/javascript" src="./js/angular-animate.min.js"></script>
+    <script type="text/javascript">
+      //replace this with whatever your module ends up being
+      var myApp = angular.module('MyMem', ['ngAnimate']);
+    </script>
+    <script type="text/javascript" src="./js/controllers.js"></script>
+    <script type="text/javascript" src="./js/jquery-2.0.3.min.js" ></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js" ></script>
+    <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="./css/style.css" type="text/css" media="screen" />
+  </head>
+  <body>
+    <div class="container game" ng-controller="GameCtrl" ng-init="init()">
+        <div class="page-header">
+            <h1>MyMem Game</h1>
+            <p class="lead">Click the button to show the locations of the highlighted boxes for four seconds, then click the boxes that were highlighted to score. Success at each level makes the grid bigger.</p>
+            <button type="button" class="btn btn-primary btn-lg"
+                ng-disabled="disableButton"
+                ng-click="beginLevel()">Show </button>
+            <h1>Score: <span ng-class="{'negative': score<0}">{{score}}</span> Level: {{level}} Left: {{toBeFound - found}}</h1>
+        </div>
+        <div class="row">
+            <table class="table table-bordered grid" ng-show="showGrid">
+                <tr ng-repeat="row in grid">
+                    <td ng-repeat="cell in row">
+                        <button type="button"
+                            ng-class="{'btn btn-primary btn-lg': cell.win,
+                                       'btn btn-danger btn-lg': cell.lose,
+                                       'btn btn-default btn-lg': !cell.win && !cell.lose}"
+                            ng-disabled="cell.disabled"
+                            ng-click="checkCell(cell)">
+                            <span ng-class="{'glyphicon glyphicon-unchecked': !cell.chosen, 'glyphicon glyphicon-ok': cell.win, 'glyphicon glyphicon-remove': cell.lose}"></span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+      </div>
+
+    </div><!-- /.container -->
+  </body>
+</html>
